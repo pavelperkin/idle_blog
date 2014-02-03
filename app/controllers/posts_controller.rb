@@ -1,12 +1,17 @@
 class PostsController < ApplicationController
   before_filter :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_post, only: [:show, :edit, :update, :destroy]
-
+  before_filter :edit_only_current_users_posts, only: [:edit, :update, :destroy]
 
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all
+    if params[:username]
+      user = User.find_by_username (params[:username])
+      @posts = user.posts
+    else
+      @posts = Post.desc
+    end
   end
 
   # GET /posts/1
@@ -69,8 +74,12 @@ class PostsController < ApplicationController
       @post = Post.find(params[:id])
     end
 
+    def edit_only_current_users_posts
+      redirect_to root_path, notice: 'You can edit only your posts' if @post.user_id == current_user.id
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:body)
+      params.require(:post).permit(:body, :user_id)
     end
 end
