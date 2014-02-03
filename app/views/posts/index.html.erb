@@ -4,6 +4,7 @@
   <thead>
     <tr>
       <th>Body</th>
+      <th>User</th>
       <th></th>
       <th></th>
       <th></th>
@@ -14,9 +15,12 @@
     <% @posts.each do |post| %>
       <tr>
         <td><%= post.body %></td>
+        <td><%= post.user.username %></td>
         <td><%= link_to 'Show', post %></td>
-        <td><%= link_to 'Edit', edit_post_path(post) %></td>
-        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if post.user_id == current_user.id %>
+          <td><%= link_to 'Edit', edit_post_path(post) %></td>
+          <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
