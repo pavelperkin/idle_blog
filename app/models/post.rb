@@ -4,4 +4,6 @@ class Post < ActiveRecord::Base
   validates :user_id, presence: true
 
   scope :desc, -> { order(created_at: :desc) }
+
+  self.per_page = 7
 end

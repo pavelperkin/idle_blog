@@ -10,7 +10,7 @@ class PostsController < ApplicationController
       user = User.find_by_username (params[:username])
       @posts = user.posts
     else
-      @posts = Post.desc
+      @posts = Post.desc.paginate(:page => params[:page])
     end
   end
 
