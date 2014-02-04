@@ -9,10 +9,13 @@ class CommentsController < ApplicationController
 
   def create
     @comment = current_user.comments.create(comment_params)
+    @post = @comment.post
   end
 
   def destroy
-    Comment.find(params[:id]).destroy
+    comment = Comment.find(params[:id])
+    @post = comment.post
+    comment.destroy
   end
 
   private

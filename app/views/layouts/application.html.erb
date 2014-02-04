@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
   <title>IdleBlog</title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
@@ -7,14 +7,42 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
-  <p><%= user_signed_in? ? current_user.username : 'guest' %></p>
-  <%= yield %>
-  <div id="tag_cloud">
-    <% tag_cloud Post.tag_counts, %w[s m l] do |tag, css_class| %>
-      <%= link_to tag.name, tag_path(tag.name), class: css_class %>
-    <% end %>
+    <div class="navbar navbar-static-top navbar-inverse">
+    <div class="navbar-inner">
+      <%= link_to 'IdleBlog', root_path, class: 'brand' %>
+        <ul class="nav pull-right" id="loginbar">
+          <% if user_signed_in? %>
+            <% if can? :create, Post %>
+              <li class='nav_item'><%= link_to 'Новая статья', new_post_path %></li>
+            <% end %>
+            <li class='nav_item'><%= link_to 'Выход', destroy_user_session_path %></li>
+          <% else %>
+            <li class='nav_item'><%= link_to "Вход", new_user_session_path %></li>
+            <li class='nav_item'><%= link_to "Регистрация", new_user_registration_path %></li>
+          <% end %>
+        </ul>
+    </div>
   </div>
+  
+  <div class="container row-fluid">
+    <div class="span9">
+      <% if notice.present? %><p class="notice"><%= notice %></p><% end %>
+      <% if alert.present? %><p class="alert"><%= alert %></p><% end %>
+      <%= yield %>
+    </div>
+    <div class="span3">
+      <%if controller_name == 'posts' %>
+        <div id="tag_cloud">
+          <% tag_cloud Post.tag_counts, %w[s m l] do |tag, css_class| %>
+            <%= link_to tag.name, tag_path(tag.name), class: css_class %>
+          <% end %>
+        </div>
+      <% end %>  
+    </div>
+  </div>
+  <%if controller_name == 'posts' %>
+    <div class="container"><%= link_to 'На главную', root_path %></div>
+  <% end %>  
+  
 </body>
 </html>

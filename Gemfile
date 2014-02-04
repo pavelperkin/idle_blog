@@ -31,6 +31,8 @@ gem 'cancan'
 gem 'will_paginate', '~> 3.0'
 gem 'carrierwave'
 gem 'acts-as-taggable-on'
+gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
+gem 'redcarpet'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

@@ -11,10 +11,32 @@
  *= require_self
  *= require_tree .
  */
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 980px;
+}
+
 #tag_cloud {
+  position: fixed;
+  top: 250px;
   width: 400px;
   line-height: 1.6em;
 }
 .s { font-size: 0.8em; }
 .m { font-size: 1.2em; }
 .l { font-size: 1.8em; }
+
+.preview {
+  height: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.white {
+  color: white !important;
+}
