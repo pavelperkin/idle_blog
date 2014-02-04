@@ -3,8 +3,10 @@
 <table>
   <thead>
     <tr>
+      <th>Header</th>
       <th>Body</th>
       <th>User</th>
+      <th>Tags</th>
       <th></th>
       <th></th>
       <th></th>
@@ -14,8 +16,10 @@
   <tbody>
     <% @posts.each do |post| %>
       <tr>
+        <td><%= post.header %></td>
         <td><%= post.body %></td>
         <td><%= link_to post.user.username, posts_url(author: post.user.username) %></td>
+        <td><%= raw post.tag_list.map {|t| link_to t, tag_path(t)}.join(', ') %></td>
         <td><%= link_to 'Show', post %></td>
           <td><%= link_to 'Edit', edit_post_path(post) %></td>
           <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>

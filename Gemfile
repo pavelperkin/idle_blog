@@ -30,6 +30,7 @@ gem 'devise'
 gem 'cancan'
 gem 'will_paginate', '~> 3.0'
 gem 'carrierwave'
+gem 'acts-as-taggable-on'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

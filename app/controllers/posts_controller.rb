@@ -11,9 +11,11 @@ class PostsController < ApplicationController
   def index
     if params[:author]
       user = User.find_by_username (params[:author])
-      @posts = user.posts.desc.paginate(:page => params[:page])
+      @posts = user.posts.desc.paginate(page: params[:page])
+    elsif params[:tag]
+      @posts = Post.tagged_with(params[:tag]).desc.paginate(page: params[:page])
     else
-      @posts = Post.desc.paginate(:page => params[:page])
+      @posts = Post.desc.paginate(page: params[:page])
     end
   end
 
@@ -66,6 +68,6 @@ class PostsController < ApplicationController
     end
 
     def post_params
-      params.require(:post).permit(:body, :image, :header)
+      params.require(:post).permit(:body, :image, :header, :tag_list)
     end
 end
