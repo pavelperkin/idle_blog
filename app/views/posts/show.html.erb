@@ -8,5 +8,24 @@
   <%= @post.user_id%>
 </p>
 
+<ul>
+  <% @post.comments.each do |comment| %>
+    <li><%= comment.body %><%= link_to 'Destroy', comment, method: :delete, remote: true %></li>
+  <% end %>
+</ul>
+
+<p>
+  <%= form_for Comment.new, remote: true do |f| %>
+    <%= f.hidden_field :post_id, value: @post.id %>
+  <div class="field">
+    <%= f.label :body %><br>
+    <%= f.text_area :body %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+</p>
+
 <%= link_to 'Edit', edit_post_path(@post) %> |
 <%= link_to 'Back', posts_path %>

@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   before_create :create_role
 
   has_many :posts
+  has_many :comments
   has_many :users_roles
   has_many :roles, :through => :users_roles
 

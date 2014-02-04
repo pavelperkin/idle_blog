@@ -7,7 +7,12 @@ class Ability
     if user.admin?
       can :manage, :all
     elsif user.author?
+      can :read, :all
       can :manage, Post, user_id: user.id
+      can :manage, Comment, user_id: user.id
+    elsif user.reader?
+      can :read, :all
+      can :manage, Comment, user_id: user.id
     else
       can :read, :all
     end
