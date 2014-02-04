@@ -27,6 +27,7 @@ gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
 gem 'devise'
+gem 'cancan'
 gem 'will_paginate', '~> 3.0'
 
 group :doc do

@@ -1,7 +1,12 @@
 class PostsController < ApplicationController
   before_filter :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+  before_filter do
+    resource = controller_path.singularize.gsub('/', '_').to_sym
+    method = "#{resource}_params"
+    params[resource] &&= send(method) if respond_to?(method, true)
+  end
   before_action :set_post, only: [:show, :edit, :update, :destroy]
-  before_filter :edit_only_current_users_posts, only: [:edit, :update, :destroy]
+  load_and_authorize_resource
 
   def index
     if params[:author]
@@ -23,8 +28,7 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(post_params)
-
+    @post = current_user.posts.new(post_params)
     respond_to do |format|
       if @post.save
         format.html { redirect_to @post, notice: 'Post was successfully created.' }
@@ -59,10 +63,6 @@ class PostsController < ApplicationController
   private
     def set_post
       @post = Post.find(params[:id])
-    end
-
-    def edit_only_current_users_posts
-      redirect_to root_path, notice: 'You can edit only your posts' if @post.user_id == current_user.id
     end
 
     def post_params
