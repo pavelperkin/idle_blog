@@ -14,6 +14,6 @@
   <%= f.label :body %><%= f.text_area :body, style:'width: 100%; height: 400px' %>
   <%= f.label :tag_list %><%= f.text_field :tag_list, style:'width: 100%;' %>
   <%= f.label :image %><%= f.file_field :image %>
-  <%= f.submit class: 'pull-right btn btn-primary'%>
+  <%= f.submit t('post_control.save'), class: 'pull-right btn btn-primary'%>
 <% end %>
 </div>

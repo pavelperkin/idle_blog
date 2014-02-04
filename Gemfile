@@ -33,6 +33,7 @@ gem 'carrierwave'
 gem 'acts-as-taggable-on'
 gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 gem 'redcarpet'
+gem 'rails-i18n', '~> 4.0.0'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

@@ -33,7 +33,7 @@ class PostsController < ApplicationController
     @post = current_user.posts.new(post_params)
     respond_to do |format|
       if @post.save
-        format.html { redirect_to @post, notice: 'Post was successfully created.' }
+        format.html { redirect_to @post, notice: I18n.t('post.was_created') }
         format.json { render action: 'show', status: :created, location: @post }
       else
         format.html { render action: 'new' }
@@ -45,7 +45,7 @@ class PostsController < ApplicationController
   def update
     respond_to do |format|
       if @post.update(post_params)
-        format.html { redirect_to @post, notice: 'Post was successfully updated.' }
+        format.html { redirect_to @post, notice: I18n.t('post.was_updated') }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }

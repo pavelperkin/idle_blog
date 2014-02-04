@@ -22,8 +22,7 @@ body {
 }
 
 #tag_cloud {
-  position: fixed;
-  top: 250px;
+  margin-top: 250px;
   width: 400px;
   line-height: 1.6em;
 }
@@ -32,11 +31,19 @@ body {
 .l { font-size: 1.8em; }
 
 .preview {
-  height: 200px;
+  min-height: 200px;
+  max-height: 200px;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
 .white {
   color: white !important;
+}
+
+.post_img {
+  max-width: 250px !important;
+  max-height: 200px !important;
+  margin-right: 20px !important;
+  margin-bottom: 20px !important;
 }

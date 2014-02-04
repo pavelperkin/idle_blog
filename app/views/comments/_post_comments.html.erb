@@ -2,7 +2,7 @@
   <% post.comments.each do |comment| %>
     <li>
       <div class="well well-small">
-        <span><b><%= comment.user.username %></b>(<%= comment.created_at%>)<b>:</b></span>  
+        <span><b><%= comment.user.username %></b>(<%=l comment.created_at, format: :short%>)<b>:</b></span>
         <span><%= comment.body %></span>
         <% if can? :destroy, comment %>
           <%= link_to 'x', comment, method: :delete, remote: true, class: 'close' %>
