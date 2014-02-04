@@ -5,5 +5,7 @@ class Post < ActiveRecord::Base
 
   scope :desc, -> { order(created_at: :desc) }
 
+  mount_uploader :image, ImageUploader
+
   self.per_page = 7
 end

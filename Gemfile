@@ -29,6 +29,7 @@ gem 'jbuilder', '~> 1.2'
 gem 'devise'
 gem 'cancan'
 gem 'will_paginate', '~> 3.0'
+gem 'carrierwave'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
