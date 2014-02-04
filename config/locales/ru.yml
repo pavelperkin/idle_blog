@@ -21,6 +21,7 @@ ru:
     sign_out: 'Выход'
     sign_in: 'Войти'
     sign_up: 'Зарегистрироваться'
+    users: 'Пользователи'
   post_control:
     show: 'Открыть'
     edit: Изменить

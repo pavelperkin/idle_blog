@@ -1,0 +1,32 @@
+<table class="table table-stripped">
+  <thead>
+    <tr>
+      <th>id</th>
+      <th>email</th>
+      <th>username</th>
+      <th>post_count</th>
+      <th>created_at</th>
+      <th>roles</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.id %></td>
+        <td><%= user.email %></td>
+        <td><%= user.username %></td>
+        <td><%= user.posts.count %></td>
+        <td><%=l user.created_at, format: :short %></td>
+        <td><%= user.roles.map {|r| r.name }.join(', ')%></td>
+        <td><%= link_to 'Сделать админом', users_make_admin_path(id: user.id) %></td>
+        <td><%= link_to 'Сделать автором', users_make_author_path(id: user.id) %></td>
+        <td><%= link_to 'Только чтение', users_make_reader_path(id: user.id) %></td>
+        <td><%= link_to "Удалить", user, method: :delete, data: { confirm: I18n.t('post_control.are_you_sure') }, class: 'btn btn-danger' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
