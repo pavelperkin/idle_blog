@@ -1,12 +1,12 @@
 <table class="table table-stripped">
   <thead>
     <tr>
-      <th>id</th>
-      <th>email</th>
-      <th>username</th>
-      <th>post_count</th>
-      <th>created_at</th>
-      <th>roles</th>
+      <th><%= t("user.id")%></th>
+      <th><%= t("user.email")%></th>
+      <th><%= t("user.username")%></th>
+      <th><%= t("user.posts_count")%></th>
+      <th><%= t("user.created_at")%></th>
+      <th><%= t("user.roles")%></th>
       <th></th>
       <th></th>
       <th></th>
@@ -22,11 +22,11 @@
         <td><%= user.posts.count %></td>
         <td><%=l user.created_at, format: :short %></td>
         <td><%= user.roles.map {|r| r.name }.join(', ')%></td>
-        <td><%= link_to 'Сделать админом', users_make_admin_path(id: user.id) %></td>
-        <td><%= link_to 'Сделать автором', users_make_author_path(id: user.id) %></td>
-        <td><%= link_to 'Публиковать статьи без модерации', users_make_trusted_path(id: user.id) %></td>
-        <td><%= link_to 'Только чтение', users_make_reader_path(id: user.id) %></td>
-        <td><%= link_to "Удалить", user, method: :delete, data: { confirm: I18n.t('post_control.are_you_sure') }, class: 'btn btn-danger' %></td>
+        <td><%= link_to t("user.make_admin"), users_make_admin_path(id: user.id) %></td>
+        <td><%= link_to t("user.make_author"), users_make_author_path(id: user.id) %></td>
+        <td><%= link_to t("user.make_trusted"), users_make_trusted_path(id: user.id) %></td>
+        <td><%= link_to t("user.make_reader"), users_make_reader_path(id: user.id) %></td>
+        <td><%= link_to t("user.remove"), user, method: :delete, data: { confirm: I18n.t('post_control.are_you_sure') }, class: 'btn btn-danger' %></td>
       </tr>
     <% end %>
   </tbody>

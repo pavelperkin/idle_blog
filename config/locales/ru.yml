@@ -22,6 +22,7 @@ ru:
     sign_in: 'Войти'
     sign_up: 'Зарегистрироваться'
     users: 'Пользователи'
+    for_moderation: 'На модерацию'
   post_control:
     show: 'Открыть'
     edit: Изменить
@@ -29,6 +30,16 @@ ru:
     save: 'Сохранить'
     are_you_sure: 'Вы уверены, что хотите удалить статью?'
     create_comment: 'Добавить комментарий'
+  user:
+    username: Псевдоним
+    posts_count: Кол-во статей
+    created_at: Зарегестрирован
+    roles: Роли
+    make_author: Сделать автором
+    make_admin: Сделать админом
+    make_reader: Только чтение
+    make_trusted: Публиковать статьи без модерации
+    remove: Удалить
   page:
     comments: 'Комментарии'
     new_comment: 'Новый комментарий'
@@ -40,6 +51,7 @@ ru:
   post:
     was_created: 'Статья сохранена'
     was_updated: 'Статья успешно обновлена'
+    publish: 'Опубликовать'
   will_paginate:
     previous_label: Предыдущая страница
     next_label: Следующая страница

@@ -11,7 +11,7 @@
         <td>
           <%= form_for post do |f|%>
             <%= f.hidden_field :moderated, value: true %>
-            <%= f.submit "Опубликовать", class: 'btn btn-success'%>          
+            <%= f.submit t('post.publish'), class: 'btn btn-success'%>
           <% end %>
         </td>
         <td><%= link_to t('post_control.destroy'), post, method: :delete, data: { confirm: I18n.t('post_control.are_you_sure') }, class: 'btn btn-danger' %></td>
