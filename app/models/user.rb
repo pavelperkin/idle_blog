@@ -37,6 +37,10 @@ class User < ActiveRecord::Base
     self.roles.map(&:name).include? 'reader'
   end
 
+  def trusted?
+    self.roles.map(&:name).include? 'trusted'
+  end
+
   private
 
     def create_role

@@ -1,0 +1,22 @@
+<%if current_user.admin? %>
+  <table class='table'>
+    <tr>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+    <% @posts.each do |post| %>
+      <tr>
+        <td><%= link_to post.header, post%></td>
+        <td>
+          <%= form_for post do |f|%>
+            <%= f.hidden_field :moderated, value: true %>
+            <%= f.submit "Опубликовать", class: 'btn btn-success'%>          
+          <% end %>
+        </td>
+        <td><%= link_to t('post_control.destroy'), post, method: :delete, data: { confirm: I18n.t('post_control.are_you_sure') }, class: 'btn btn-danger' %></td>
+      </tr>
+    <% end %>
+  </table>
+    
+<% end %>

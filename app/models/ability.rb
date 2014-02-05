@@ -13,6 +13,10 @@ class Ability
     elsif user.reader?
       can :read, :all
       can :manage, Comment, user_id: user.id
+    elsif user.trusted?
+      can :read, :all
+      can :manage, Comment, user_id: user.id
+      can :manage, Post, user_id: user.id
     else
       can :read, :all
     end

@@ -1,1 +1,1 @@
-Role.create([{name: :admin}, {name: :author}, {name: :reader}])
+Role.create([{name: :admin}, {name: :author}, {name: :reader}, {name: :trusted}])

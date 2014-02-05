@@ -11,15 +11,19 @@ class PostsController < ApplicationController
   def index
     if params[:author]
       user = User.find_by_username (params[:author])
-      @posts = user.posts.desc.paginate(page: params[:page])
+      @posts = user.posts.moderated.desc.paginate(page: params[:page])
     elsif params[:tag]
-      @posts = Post.tagged_with(params[:tag]).desc.paginate(page: params[:page])
+      @posts = Post.tagged_with(params[:tag]).moderated.desc.paginate(page: params[:page])
     else
-      @posts = Post.desc.paginate(page: params[:page])
+      @posts = Post.moderated.desc.paginate(page: params[:page])
     end
   end
 
   def show
+  end
+
+  def for_moderation
+    @posts = Post.waiting_for_moderation
   end
 
   def new
@@ -31,35 +35,24 @@ class PostsController < ApplicationController
 
   def create
     @post = current_user.posts.new(post_params)
-    respond_to do |format|
-      if @post.save
-        format.html { redirect_to @post, notice: I18n.t('post.was_created') }
-        format.json { render action: 'show', status: :created, location: @post }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
-      end
+    if @post.save
+      redirect_to @post, notice: I18n.t('post.was_created')
+    else
+      render action: 'new'
     end
   end
 
   def update
-    respond_to do |format|
-      if @post.update(post_params)
-        format.html { redirect_to @post, notice: I18n.t('post.was_updated') }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
-      end
+    if @post.update(post_params)
+      redirect_to @post, notice: I18n.t('post.was_updated')
+    else
+      render action: 'edit'
     end
   end
 
   def destroy
     @post.destroy
-    respond_to do |format|
-      format.html { redirect_to posts_url }
-      format.json { head :no_content }
-    end
+    redirect_to posts_url
   end
 
   private
@@ -68,6 +61,6 @@ class PostsController < ApplicationController
     end
 
     def post_params
-      params.require(:post).permit(:body, :image, :header, :tag_list)
+      params.require(:post).permit(:body, :image, :header, :tag_list, :moderated)
     end
 end

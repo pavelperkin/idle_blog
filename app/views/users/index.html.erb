@@ -24,6 +24,7 @@
         <td><%= user.roles.map {|r| r.name }.join(', ')%></td>
         <td><%= link_to 'Сделать админом', users_make_admin_path(id: user.id) %></td>
         <td><%= link_to 'Сделать автором', users_make_author_path(id: user.id) %></td>
+        <td><%= link_to 'Публиковать статьи без модерации', users_make_trusted_path(id: user.id) %></td>
         <td><%= link_to 'Только чтение', users_make_reader_path(id: user.id) %></td>
         <td><%= link_to "Удалить", user, method: :delete, data: { confirm: I18n.t('post_control.are_you_sure') }, class: 'btn btn-danger' %></td>
       </tr>

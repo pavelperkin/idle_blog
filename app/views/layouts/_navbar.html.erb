@@ -6,8 +6,9 @@
           <% if can? :create, Post %>
             <li class='nav_item'><%= link_to t('links.new_post'), new_post_path %></li>
           <% end %>
-          <% if can? :update, User %>
+          <% if current_user.admin? %>
             <li class='nav_item'><%= link_to t('links.users'), users_path %></li>
+            <li class='nav_item'><%= link_to t('links.for_moderation'), posts_for_moderation_path %></li>
           <% end %>
           <li class='nav_item'><%= link_to t('links.sign_out'), destroy_user_session_path %></li>
         <% else %>
