@@ -1,10 +1,5 @@
 class PostsController < ApplicationController
   before_filter :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
-  before_filter do
-    resource = controller_path.singularize.gsub('/', '_').to_sym
-    method = "#{resource}_params"
-    params[resource] &&= send(method) if respond_to?(method, true)
-  end
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   load_and_authorize_resource
 
