@@ -13,7 +13,6 @@ class ApplicationController < ActionController::Base
     redirect_to root_url, alert: 'Access denied.'
   end
 
-
   protected
 
   def configure_permitted_parameters
