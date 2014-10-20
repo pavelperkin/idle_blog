@@ -22,10 +22,10 @@
         <td><%= user.posts.count %></td>
         <td><%=l user.created_at, format: :short %></td>
         <td><%= user.roles.map {|r| r.name }.join(', ')%></td>
-        <td><%= link_to t("user.make_admin"), users_make_admin_path(id: user.id) %></td>
-        <td><%= link_to t("user.make_author"), users_make_author_path(id: user.id) %></td>
-        <td><%= link_to t("user.make_trusted"), users_make_trusted_path(id: user.id) %></td>
-        <td><%= link_to t("user.make_reader"), users_make_reader_path(id: user.id) %></td>
+        <td><%= link_to t("user.make_admin"), user_make_admin_path(user_id: user.id), method: :post %></td>
+        <td><%= link_to t("user.make_author"), user_make_author_path(user_id: user.id), method: :post %></td>
+        <td><%= link_to t("user.make_trusted"), user_make_trusted_path(user_id: user.id), method: :post %></td>
+        <td><%= link_to t("user.make_reader"), user_make_reader_path(user_id: user.id), method: :post %></td>
         <td><%= link_to t("user.remove"), user, method: :delete, data: { confirm: I18n.t('post_control.are_you_sure') }, class: 'btn btn-danger' %></td>
       </tr>
     <% end %>
